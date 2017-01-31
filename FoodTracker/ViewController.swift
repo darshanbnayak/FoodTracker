@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITextFieldDelegate {
+class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate {    //These are the delegates for text field and image picker respectively
     
     
     //MARK: Properties
@@ -16,7 +17,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!  //Outlet for Textbox
     @IBOutlet weak var mealNameLabel: UILabel!  //Outlet for Label.
-    //Outlets are a way of setting/getting values from the objects on the canvas.
+    @IBOutlet weak var photoImageView: UIImageView!
+    //Outlets are a way of setting/getting values from/to the objects on the canvas.
     
     
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
-        textField.resignFirstResponder()    //here, we are resigning from the role of the textfield being the first responder.
+        textField.resignFirstResponder()    //here, we are resigning from the role of the textfield being the first responder, AKA, dismissing keypad
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -38,8 +40,31 @@ class ViewController: UIViewController,UITextFieldDelegate {
         mealNameLabel.text = textField.text //We just assigned text typed by the user in the textfield to the label!!
     }
     
+    
+    
+    //MARK: UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)    //dismisses imgPicker on tapping cancel
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // The info dictionary may contain multiple representations of the image. You want to use the original.
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        photoImageView.image = selectedImage    //Set selected image
+        dismiss(animated: true, completion: nil)    //make the picker disappear after selecting image
+    }
+    
+    
     //MARK: Actions
     
+    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
+        nameTextField.resignFirstResponder()    //dismissing keypad
+        let imagePickerController = UIImagePickerController()   //creates a img picker
+        imagePickerController.sourceType = .photoLibrary    //Only allow library photoes, not capture new ones!!
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil) //Presents the imagepicker to the user on screen
+    }
     
     @IBAction func setDefaultLabelText(_ sender: UIButton) {
         mealNameLabel.text = "Default Text"

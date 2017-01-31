@@ -18,6 +18,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
     @IBOutlet weak var nameTextField: UITextField!  //Outlet for Textbox
     @IBOutlet weak var mealNameLabel: UILabel!  //Outlet for Label.
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var ratingControl: RatingControl!
     //Outlets are a way of setting/getting values from/to the objects on the canvas.
     
     

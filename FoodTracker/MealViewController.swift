@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
     UINavigationControllerDelegate {    //These are the delegates for text field and image picker respectively
@@ -20,6 +21,13 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     //Outlets are a way of setting/getting values from/to the objects on the canvas.
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    /*
+     This value is either passed by `MealTableViewController` in `prepare(for:sender:)`
+     or constructed as part of adding a new meal.
+     */
+    var meal: Meal?
     
     
     override func viewDidLoad() {
@@ -55,6 +63,26 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         photoImageView.image = selectedImage    //Set selected image
         dismiss(animated: true, completion: nil)    //make the picker disappear after selecting image
     }
+    
+    //MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //Lets you configure a view controller before it is presented to the user
+        super.prepare(for: segue, sender: sender)
+        
+        // Configure the destination view controller only when the save button is pressed.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        let name = nameTextField.text ?? "" //Note this. It is a 'nil coalescing operator', returns a value if a value exists, else returns ""
+        let photo = photoImageView.image
+        let rating = ratingControl.rating
+        
+        // Set the meal to be passed to MealTableViewController after the unwind segue.
+        meal = Meal(name: name, photo: photo, rating: rating)
+    }
+    
+    
     
     
     //MARK: Actions

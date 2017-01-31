@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MealViewController.swift
 //  FoodTracker
 //
 //  Created by user124807 on 1/30/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
+class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
     UINavigationControllerDelegate {    //These are the delegates for text field and image picker respectively
     
     
@@ -16,7 +16,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
     
     
     @IBOutlet weak var nameTextField: UITextField!  //Outlet for Textbox
-    @IBOutlet weak var mealNameLabel: UILabel!  //Outlet for Label.
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     //Outlets are a way of setting/getting values from/to the objects on the canvas.
@@ -38,7 +38,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         //basic need of this method is to be able to read what the user typed in the keypad
-        mealNameLabel.text = textField.text //We just assigned text typed by the user in the textfield to the label!!
+        
     }
     
     

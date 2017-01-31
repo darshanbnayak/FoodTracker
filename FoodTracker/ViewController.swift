@@ -67,8 +67,6 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
         present(imagePickerController, animated: true, completion: nil) //Presents the imagepicker to the user on screen
     }
     
-    @IBAction func setDefaultLabelText(_ sender: UIButton) {
-        mealNameLabel.text = "Default Text"
-    }
+    
 }
 

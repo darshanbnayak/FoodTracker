@@ -34,10 +34,18 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         super.viewDidLoad() //predefined function, which basically invokes the viewDidLoad() of parent class.
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self   //sets the delegate of text field as this class (ViewController class).
+        
+        // Enable the Save button only if the text field has a valid Meal name.
+        updateSaveButtonState()
     }
 
     
     //MARK: UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        saveButton.isEnabled = false
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
@@ -46,6 +54,8 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         //basic need of this method is to be able to read what the user typed in the keypad
+        updateSaveButtonState()
+        navigationItem.title = textField.text
         
     }
     
@@ -65,6 +75,11 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     }
     
     //MARK: Navigation
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)    //This dismisses the modal scene, animates transition to previous scene
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //Lets you configure a view controller before it is presented to the user
         super.prepare(for: segue, sender: sender)
@@ -95,6 +110,12 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
         present(imagePickerController, animated: true, completion: nil) //Presents the imagepicker to the user on screen
     }
     
+    //MARK: Private Methods
     
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let text = nameTextField.text ?? "" //Note this. It is a 'nil coalescing operator', returns a value if a value exists, else returns ""
+        saveButton.isEnabled = !text.isEmpty    //disable the Save button if the text field is empty
+    }
 }
 

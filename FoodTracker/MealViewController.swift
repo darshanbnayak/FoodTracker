@@ -87,7 +87,25 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     //MARK: Navigation
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)    //This dismisses the modal scene, animates transition to previous scene
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        if isPresentingInAddMealMode {
+            dismiss(animated: true, completion: nil)    //This dismisses the modal scene, animates transition to previous scene
+        }
+            
+            
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+            
+            
+        else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
+        
+
+        
+
     }
     
     

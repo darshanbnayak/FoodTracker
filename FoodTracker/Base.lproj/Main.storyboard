@@ -48,6 +48,7 @@
                                     <outlet property="nameLabel" destination="oRi-qr-qbC" id="50H-MB-qqj"/>
                                     <outlet property="photoImageView" destination="AYE-y8-JeS" id="9Xe-dw-zkQ"/>
                                     <outlet property="ratingControl" destination="2sZ-Zg-Klz" id="WE6-lQ-QH3"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Lsz-LM-rKq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -184,4 +185,7 @@
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OAg-m3-VCx"/>
+    </inferredMetricsTieBreakers>
 </document>

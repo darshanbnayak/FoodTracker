@@ -5,7 +5,9 @@
 //  Created by user124807 on 1/31/17.
 //  Copyright © 2017 Darshan Nayak. All rights reserved.
 //
-
+/*
+ This file acts as a Controller for the Your Meals Scene and handles the way the app shows its launch screen with all the meals listed. User can access buttons for Adding a meal, deleting a meal or simply tap an existing meal to edit the meal. Note that the actual Add/Update meal is handled by MealViewController.swift.
+ */
 import UIKit
 import os.log
 
@@ -63,7 +65,7 @@ class MealTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return meals.count
+        return meals.count //returns the total number of meals that are present.
     }
 
     
@@ -136,12 +138,12 @@ class MealTableViewController: UITableViewController {
         switch(segue.identifier ?? "") {
             
             
-        case "AddItem":
+        case "AddItem": //User is trying to add a new meal.
             os_log("Adding a new meal.", log: OSLog.default, type: .debug)
             
             
             
-        case "ShowDetail":  //These are all sanity checks. These won't fail as the storyboard is all set perfectly.
+        case "ShowDetail":  // User trying to Update a meal. The following guards are all sanity checks. These won't fail as the storyboard is all set perfectly.
             guard let mealDetailViewController = segue.destination as? MealViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }

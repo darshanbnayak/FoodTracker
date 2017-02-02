@@ -5,7 +5,9 @@
 //  Created by user124807 on 1/30/17.
 //  Copyright © 2017 Darshan Nayak. All rights reserved.
 //
-
+/*
+ Model file for our Data object (which is a Meal). Houses all the properties into the Class Meal
+ */
 import UIKit    //Also gives access to Foundation, so no need to add it explicitly
 import os.log
 
@@ -32,7 +34,7 @@ class Meal: NSObject, NSCoding {
     //MARK: Types
     
     struct PropertyKey {
-        
+        //keys for accessing property of the meal object
         
         static let name = "name"
         static let photo = "photo"
@@ -55,7 +57,7 @@ class Meal: NSObject, NSCoding {
         guard (rating >= 0) && (rating <= 5) else { //guard to check rating between 0 and 5, all-inclusive
             return nil
         }
-        //Initialize
+        //Initialize the meal object
         self.name = name
         self.photo = photo
         self.rating = rating

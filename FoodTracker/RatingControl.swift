@@ -5,6 +5,9 @@
 //  Created by user124807 on 1/30/17.
 //  Copyright © 2017 Darshan Nayak. All rights reserved.
 //
+/*
+ This file has the code required to make the Custom Rating Control. Acts as a View.
+ */
 
 import UIKit
 

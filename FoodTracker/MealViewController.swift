@@ -5,7 +5,9 @@
 //  Created by user124807 on 1/30/17.
 //  Copyright © 2017 Darshan Nayak. All rights reserved.
 //
-
+/*
+ This file is the Controller for the New Meal Scene in the Storyboard and is responsible for handling logic during Adding new meal or Updating existing meal.
+ */
 import UIKit
 import os.log
 
@@ -20,7 +22,7 @@ class MealViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
-    //Outlets are a way of setting/getting values from/to the objects on the canvas.
+    //Outl	ets are a way of setting/getting values from/to the objects on the canvas.
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     /*

@@ -5,7 +5,10 @@
 //  Created by user124807 on 1/30/17.
 //  Copyright © 2017 Darshan Nayak. All rights reserved.
 //
-
+/*
+ In the App, This class comes as is, and we have not done any modifications to this class. These functions can be used if there is something you need to do during states like
+ App entering background, App becoming active, etc.
+ */
 import UIKit
 
 @UIApplicationMain
